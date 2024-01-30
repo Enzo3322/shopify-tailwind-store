@@ -1,0 +1,50 @@
+{% comment %}
+    FILEPATH: /Users/spag/projects/github/theme/templates/index.liquid
+{% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Shopify Store</title>
+</head>
+<body>
+    <header>
+        <h1 class="text-2xl">Welcome to My Shopify Store</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/collections/all">Shop</a></li>
+                <li><a href="/pages/about">About</a></li>
+                <li><a href="/pages/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Featured Products</h2>
+            <ul>
+                {% for product in collections.frontpage.products limit:4 %}
+                    <li>
+                        <a href="{{ product.url }}">
+                            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                            <h3>{{ product.title }}</h3>
+                            <p>{{ product.price | money }}</p>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl at lacinia tincidunt, velit nunc tincidunt nunc, id tincidunt nisl nunc auctor nunc.</p>
+            <a href="/pages/about">Learn More</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; {{ 'now' | date: '%Y' }} My Shopify Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
